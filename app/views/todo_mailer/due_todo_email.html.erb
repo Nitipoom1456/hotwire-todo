@@ -1,0 +1,10 @@
+<h1>Hello <%= @user.name %>,</h1>
+
+<p>This is a reminder that the following todo is due today:</p>
+
+<ul>
+  <li><strong>Todo:</strong> <%= @todo.name %></li>
+  <li><strong>Due Date:</strong> <%= @todo.duedate.strftime("%B %d, %Y") %></li>
+</ul>
+
+<p>Please make sure to complete it on time.</p>
