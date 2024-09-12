@@ -5,12 +5,6 @@
       <%= link_to todo.name, todo.complete? ? 'javascript:void(0)' : edit_todo_path(todo), class: todo.complete? ? 'line-through cursor-default' : '' %>
       <%= link_to todo.duedate, todo.complete? ? 'javascript:void(0)' : edit_todo_path(todo), class: todo.complete? ? 'line-through cursor-default' : '' %>
       <div class="flex justify-end space-x-3">
-          <%# <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select> %>
           <%= button_to change_status_todo_path(todo, todo: { status: todo.complete? ? 'incomplete' : 'complete' }), class: "border border-dashed #{todo.complete? ? 'border-green-700' : 'border-gray-400 hover:border-green-700'} px-2 py-2 rounded-full #{todo.complete? ? 'text-green-700' : 'text-gray-400 hover:text-green-700'}", method: :patch do %>
             <% if todo.complete? %>
                 <span class="sr-only">Mark as incomplete</span>
