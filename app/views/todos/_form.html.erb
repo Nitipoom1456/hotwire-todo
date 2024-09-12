@@ -17,7 +17,7 @@
       <%= form.text_field :name, class: "shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full bg-transparent hover:border-blue-600" %>
       <% if todo.persisted? %>
         <%= form.date_field :duedate, min: Date.today.strftime("%Y-%m-%d"), class: "shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full bg-transparent hover:border-blue-600" %>
-        <%# <%= form.select options_for_select([['Ruby on Rails', 'Ruby on Rails'], ['Java', 'Java'], ['Python', 'Python']]), include_blank: "Assign to", id: "subject" %> %>
+        <%= form.collection_select :user_id, User.all, :id, :name, { prompt: "Assign to" }, class: "shadow rounded-md border border-gray-300 outline-none px-3 py-2 mt-2 w-full bg-transparent hover:border-blue-600" %>
       <% end %>
       <%= form.submit class: "rounded-lg px-3 py-2 mt-2 ml-0 min-[400px]:ml-3 text-blue-600 hover:text-white border border-blue-600 hover:bg-blue-600 font-medium cursor-pointer" %>
     </div>

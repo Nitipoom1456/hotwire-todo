@@ -11,7 +11,11 @@ class TodosController < ApplicationController
   # GET /todos or /todos.json
   def index
     Rails.logger.info 'Index view accessed'
-    @todos = Todo.where(status: params[:status].presence || 'incomplete')  
+    # @todos = Todo
+    # .where(status: params[:status].presence || 'incomplete')
+    @todos = Todo.all
+    @todos = @todos.where(status: params[:status]) if params[:status].present?
+    @todos = @todos.where(user_id: params[:user_id]) if params[:user_id].present?
   end
 
   # GET /todos/1 or /todos/1.json
@@ -80,6 +84,16 @@ class TodosController < ApplicationController
     end
   end
 
+  # GET /todos/user/:user_id
+  def show_by_user
+    @todos = if params[:user_id].present?
+      Todo.where(user_id: params[:user_id])
+    else
+      Todo.all
+    end
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo
@@ -88,6 +102,6 @@ class TodosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def todo_params
-      params.require(:todo).permit(:name, :status, :duedate)
+      params.require(:todo).permit(:name, :status, :duedate, :user_id)
     end
 end
